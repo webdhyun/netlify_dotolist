@@ -1,71 +1,99 @@
 import '../css/Todo.css';
-import{Component} from 'react';
+import { Component } from 'react';
+import { faPen } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-class Todo extends Component{
+class Todo extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props)
-    this.state={
-        edit:false,
-        text:this.props.text
-
+      this.state = {
+        text:this.props.text,
+        edit:false
     }
   }
 
-    delTodo=()=>{
-        alert('삭제!(Todo)')
-        const id=this.props.id
-        this.props.delTodo(id)
-        //App가 넘긴 함수
+   onRemove = () => {
+       //alert("삭제(Todo)")
+       const {id}=this.props
+       this.props.onRemove(id)
+   }
+    
+   onUpdate = () => {
+       //alert("수정(Todo)")
+       const { id } = this.props
+       const { edit, text } = this.state
+       if (edit === true) {
+           this.props.onUpdate(id,text)
+       }
+       this.setState({
+           edit:!edit
+       })
     }
-
-    updateTodo=()=>{
-        alert("수정(Todo.js)")
-
-        //수정누른다고 데이터를 무조건 보내는건 아니다.
-        //수정불가능모드일때 수정버튼 누르면 그냥 수정 가능모드로 화면변경
-        //수정가능모드일때 수정버튼 누르면 위로 보낸다.
-        if(this.state.edit===true){
-            //수정버튼 눌렀는데 지금 수정가능 상태다.
-            this.props.updateTodo(this.props.id,this.state.text)
-
-        }
-        this.setState({
-            edit:!this.state.edit
-        })
-    }
-    textChange=(e)=>{
-        //console.log('text change!')
-        console.log(e.target.value)
+    
+    textChange = (e) => {
         this.setState({
             text:e.target.value
         })
     }
 
-    render(){  //조건부 렌더링 (conditional rendering)
-        if(this.state.edit===false){ //시작할떄 나오는 고정 화면
-            return(  
-                <div id='Todo'>      
-                       {this.props.text}
-                       <button onClick={this.delTodo}>삭제</button>
-                       <button onClick={this.updateTodo}>수정</button>
-                </div>           
-        
-            )
-        }else if(this.state.edit===true){
-            return(  
-                <div id='Todo'>      
-                    <input type='text' defaultValue={this.props.text}
-                    onChange={this.textChange}/>
-                       <button onClick={this.delTodo}>삭제</button>
-                       <button onClick={this.updateTodo}>수정</button>
-                </div>           
-        
-            )
-        }
-        
+    checkDone=()=>{
+      //alert("완료 체크!(Todo)")
+      const { id, checked } = this.props
+      this.props.checkDone(id,checked)
     }
-
     
+  render() {
+     const { id, text, checked } = this.props
+     const { edit } = this.state
+     if (edit === false) {
+        return(
+            <div className="todo">
+              <div className='todo-area'>
+                  <span>
+                      <input type='checkbox'
+                      onClick={this.checkDone}/>
+                  </span>  
+                  <span> </span>  
+                  <span className={checked? 'done' : null}>{text}</span>   
+              </div>
+              <div className='btn-area'>
+                  <button onClick={this.onRemove}>
+                  <FontAwesomeIcon icon={faTrash} />
+                  </button>
+                  <button onClick={this.onUpdate}>
+                  <FontAwesomeIcon icon={faPen} />
+                  </button>
+              </div>   
+            </div>
+          );
+     } else if (edit === true) {
+        return(
+            <div className="todo">
+              <div className='todo-area'>
+                  <span>
+                      <input type='checkbox'/>
+                  </span>  
+                  <span> </span>  
+                  <span>
+                    <input type='text' defaultValue={text}
+                        onChange={this.textChange} />
+                  </span>   
+              </div>
+              <div className='btn-area'>
+                  <button onClick={this.onRemove}>
+                  <FontAwesomeIcon icon={faTrash} />
+                  </button>
+                  <button onClick={this.onUpdate}>
+                  <FontAwesomeIcon icon={faPen} />
+                  </button>
+              </div> 
+            </div>
+          );
+     }
+    
+  }
 }
+
 export default Todo;

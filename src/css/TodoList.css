@@ -1,0 +1,14 @@
+
+.todo-list{
+    width:90%;
+    /*height:90%;*/
+    /* background-color: aquamarine; */
+    background-color: #22c1c3;
+    border:1px solid black;
+    border-top: none;
+    margin:0 auto;
+    padding:20px 0px;
+    box-sizing: border-box;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}

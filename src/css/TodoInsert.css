@@ -1,0 +1,50 @@
+
+.todo-insert{
+    width:90%;
+    height:50px;
+    background-color: #fdbb2d;
+    border:1px solid black;
+    border-collapse: collapse;
+    /* background-color: darkgoldenrod; */
+    margin:0 auto;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.todo-insert>input{
+    width:70%;
+    height:70%;
+    border-radius: 10px;
+    margin:5px 10px;
+    padding-left:20px;
+    box-sizing: border-box;
+    font-size:20px;
+    
+}
+
+.todo-insert>button{
+    width:60px;
+    height:35px;
+    border-radius: 10px;
+    background-color: palevioletred;
+    cursor:pointer;
+    border:none;
+    position: relative;
+    top:-3px;
+}
+
+@media (max-width: 400px) {
+    .todo-insert{
+        height:80px;
+    }
+    .todo-insert>input{
+        width:90%;
+        height:30%;
+    }
+    .todo-insert>button{
+        margin-left:10px;
+        width:90%;
+        height:30%;
+        font-size:20px;
+    }
+}

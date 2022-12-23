@@ -1,7 +1,105 @@
 
-#Todo {
-    width:300px;
-    height:100px;
-    background-color: aquamarine;
-    margin:20px;
+.todo{
+    width:90%;
+    height:50px;
+    background-color: cadetblue;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.todo>.todo-area{
+    width:65%;
+    height:100%;
+    background-color: darkkhaki;
+    float:left;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+
+    padding-top:10px;
+    padding-left:10px;
+    box-sizing: border-box;
+}
+
+.done{
+    text-decoration:line-through;
+    color:#777;
+    opacity: 0.7;
+}
+.done::after{
+    content:'완료';
+    display:inline-block;
+    border-radius: 10px;
+    margin-left:20px;
+    font-weight: bold;
+    border:1px solid black;
+}
+
+.todo>.todo-area>span{
+    float:left;
+    text-align: center;
+    padding-top:5px;
+    box-sizing: border-box;
+    font-size:25px;
+    font-weight: bold;
+    height:40px;
+}
+.todo>.todo-area>span:first-child{
+    width:10%;
+    /* background-color: palegreen; */
+}
+.todo>.todo-area>span:first-child>input{
+    cursor:pointer;
+    width:25px;
+    height:25px;
+}
+.todo>.todo-area>span:nth-child(2){
+    width:10%;
+    float:left;
+    /* background-color: plum; */
+}
+.todo>.todo-area>span:nth-child(3){
+    width:80%;
+    float:left;
+    position: relative;
+    top:-7px;
+    /* background-color: powderblue; */
+}
+
+.todo>.btn-area{
+    width:35%;
+    height:100%;
+    background-color: darksalmon;
+    float:left;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding:10px 10px;
+    box-sizing: border-box;
+}
+.todo>.btn-area>button{
+    width:35px;
+    height:30px;
+    border-radius: 10px;
+    margin-right:5px;
+    cursor:pointer;
+}
+
+@media (max-width: 400px) {
+
+    .todo{
+        width:90%;
+        height:80px;
+        background-color: cadetblue;
+        margin: 10px;
+        border-radius: 10px;
+    }
+
+    .todo>.btn-area{
+        width:35%;
+        height:100%;
+        padding-left:25px;
+        box-sizing: border-box;
+    }
+    .todo>.btn-area>button:first-child{
+        margin-bottom: 5px;
+    }
 }
